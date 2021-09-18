@@ -1,20 +1,24 @@
 package com.prueba.mercado.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/mutant/")
 public class MutantController {
 
     @GetMapping
-    public Boolean isMutant(HttpServletResponse response ) {
+    @ResponseStatus(HttpStatus.OK)
+    public Boolean isMutant() {
         Boolean isMutant = true;
 
-        response.setStatus(HttpServletResponse.SC_OK);
+        if(true){
+            throw new NullPointerException("Null exc");
+        }
+
         return isMutant;
     }
 }

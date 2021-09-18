@@ -4,9 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Date;
-import java.util.List;
+import org.springframework.http.HttpStatus;
 
 @Getter
 @Setter
@@ -14,12 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 public class ErrorResponse {
 
-    private int status;
+    private HttpStatus status;
     private String message;
-    private Date timestamp;
-    private List<String> errors;
+    private String timestamp;
 
-    public ErrorResponse (String message) {
-        this.message = message;
-    }
 }
