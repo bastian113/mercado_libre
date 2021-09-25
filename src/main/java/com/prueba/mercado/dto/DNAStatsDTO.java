@@ -5,15 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DNASequenceDTO {
+public class DNAStatsDTO {
 
-    @NotNull(message = "Sequence is mandatory")
-    private String[] sequence;
+    private long countMutant;
+
+    private long countHuman;
+
+    private double ratio;
 }
-

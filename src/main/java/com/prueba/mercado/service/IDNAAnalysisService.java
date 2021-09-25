@@ -5,5 +5,5 @@ import com.prueba.mercado.exception.DNASequenceFormatException;
 
 public interface IDNAAnalysisService {
 
-    boolean isMutant(DNASequenceDTO sequence) throws Exception;
+    boolean isMutant(DNASequenceDTO sequence) throws DNASequenceFormatException;
 }
