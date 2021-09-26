@@ -1,7 +1,7 @@
 package com.prueba.mercado.controller;
 
 import com.prueba.mercado.dto.DNAStatsDTO;
-import com.prueba.mercado.service.DNAStatsService;
+import com.prueba.mercado.service.IDNAStatsService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class DNAStatsController {
 
     @Autowired
-    DNAStatsService dnaStatsService;
+    IDNAStatsService dnaStatsService;
 
     @ApiOperation("Calculate Statistics")
     @ApiResponse(code = 200, message = "The statistics were calculated successfully")

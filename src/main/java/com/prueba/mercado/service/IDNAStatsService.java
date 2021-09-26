@@ -6,7 +6,7 @@ import com.prueba.mercado.dto.DNAStatsDTO;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface DNAStatsService {
+public interface IDNAStatsService {
 
     Optional<DNAModel> getExistingSequence(UUID sequenceUUID);
 

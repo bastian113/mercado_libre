@@ -1,17 +1,15 @@
 package com.prueba.mercado.controller;
 
 import com.prueba.mercado.dto.DNAStatsDTO;
-import com.prueba.mercado.service.DNAStatsService;
+import com.prueba.mercado.service.IDNAStatsService;
 import com.prueba.mercado.util.EntitiesBuilderTestUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -25,10 +23,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class DNAStatsControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
-    @Mock
-    DNAStatsService dnaStatsService;
+    @MockBean
+    IDNAStatsService dnaStatsService;
 
     @Test
     public void getStatsTest() throws Exception {

@@ -3,7 +3,7 @@ package com.prueba.mercado.service.impl;
 import com.prueba.mercado.domain.DNAModel;
 import com.prueba.mercado.dto.DNASequenceDTO;
 import com.prueba.mercado.exception.DNASequenceFormatException;
-import com.prueba.mercado.service.DNAStatsService;
+import com.prueba.mercado.service.IDNAStatsService;
 import com.prueba.mercado.service.IDNAAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class DNAAnalysisServiceImpl implements IDNAAnalysisService {
     private static final int VALID_OBLIQUE_LEFT_SEQUENCE_SIZE = 3;
 
     @Autowired
-    private DNAStatsService dnaStatsService;
+    private IDNAStatsService dnaStatsService;
 
     /**
      * @param sequenceDTO
@@ -57,6 +57,10 @@ public class DNAAnalysisServiceImpl implements IDNAAnalysisService {
         for (int i = 0; i < sequence.length; i++) {
 
             String horizontalSequence = sequence[i];
+
+            if(horizontalSequence == null) {
+                throw new DNASequenceFormatException("Invalid nitrogenous base, null subSequence");
+            }
 
             for (int j = 0; j < horizontalSequence.length(); j++) {
                     mutantSequencesCount += evaluateHorizontalSequence(horizontalSequence, j, mutantSequencesCount);
@@ -136,10 +140,15 @@ public class DNAAnalysisServiceImpl implements IDNAAnalysisService {
      * @param currentSubsequence
      * @return the built vertical sequence
      */
-    private String getVerticalSequence (String[] sequence, int currentPosition, int currentSubsequence) {
+    private String getVerticalSequence (String[] sequence, int currentPosition, int currentSubsequence) throws DNASequenceFormatException {
         StringBuilder verticalSequence = new StringBuilder();
         for(int i = 0; i < 4; i++) {
-            verticalSequence.append(sequence[currentSubsequence + i].charAt(currentPosition));
+            String subSequence = sequence[currentSubsequence + i];
+            if(subSequence == null) {
+                throw new DNASequenceFormatException("Invalid nitrogenous base, null subSequence");
+            } else {
+                verticalSequence.append(subSequence.charAt(currentPosition));
+            }
         }
 
         return verticalSequence.toString();
@@ -177,10 +186,15 @@ public class DNAAnalysisServiceImpl implements IDNAAnalysisService {
      * @param currentSubsequence
      * @return the built right oblique sequence
      */
-    private String getRightObliqueSequence(String[] sequence, int currentPosition, int currentSubsequence) {
+    private String getRightObliqueSequence(String[] sequence, int currentPosition, int currentSubsequence) throws DNASequenceFormatException {
         StringBuilder rightObliqueSequence = new StringBuilder();
         for(int i = 0; i < 4; i++) {
-            rightObliqueSequence.append(sequence[currentSubsequence + i].charAt(currentPosition + i));
+            String subSequence = sequence[currentSubsequence + i];
+            if(subSequence == null) {
+                throw new DNASequenceFormatException("Invalid nitrogenous base, null subSequence");
+            } else {
+                rightObliqueSequence.append(sequence[currentSubsequence + i].charAt(currentPosition + i));
+            }
         }
 
         return rightObliqueSequence.toString();
@@ -217,10 +231,15 @@ public class DNAAnalysisServiceImpl implements IDNAAnalysisService {
      * @param currentSubsequence
      * @return the built left oblique sequence
      */
-    private String getLeftObliqueSequence(String[] sequence, int currentPosition, int currentSubsequence) {
+    private String getLeftObliqueSequence(String[] sequence, int currentPosition, int currentSubsequence) throws DNASequenceFormatException {
         StringBuilder leftObliqueSequence = new StringBuilder();
         for(int i = 0; i < 4; i++) {
-            leftObliqueSequence.append(sequence[currentSubsequence + i].charAt(currentPosition - i));
+            String subSequence = sequence[currentSubsequence + i];
+            if(subSequence == null) {
+                throw new DNASequenceFormatException("Invalid nitrogenous base, null subSequence");
+            } else {
+                leftObliqueSequence.append(sequence[currentSubsequence + i].charAt(currentPosition - i));
+            }
         }
 
         return leftObliqueSequence.toString();
@@ -233,7 +252,7 @@ public class DNAAnalysisServiceImpl implements IDNAAnalysisService {
      */
     private void isValidSequence(String evalSequence) throws DNASequenceFormatException {
         if(!evalSequence.matches("[ATCG]+")) {
-            throw new DNASequenceFormatException("Invalid nitrogenous base " + evalSequence);
+                throw new DNASequenceFormatException("Invalid nitrogenous base " + evalSequence);
         }
     }
 

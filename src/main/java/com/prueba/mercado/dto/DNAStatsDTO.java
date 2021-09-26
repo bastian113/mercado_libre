@@ -11,9 +11,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class DNAStatsDTO {
 
-    private long countMutant;
+    private long countMutants;
 
-    private long countHuman;
+    private long countHumans;
 
     private double ratio;
 }

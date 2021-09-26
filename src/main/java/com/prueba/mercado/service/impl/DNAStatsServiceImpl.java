@@ -3,7 +3,7 @@ package com.prueba.mercado.service.impl;
 import com.prueba.mercado.domain.DNAModel;
 import com.prueba.mercado.dto.DNAStatsDTO;
 import com.prueba.mercado.repository.DNAStatsRepository;
-import com.prueba.mercado.service.DNAStatsService;
+import com.prueba.mercado.service.IDNAStatsService;
 import org.decimal4j.util.DoubleRounder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class DNAStatsServiceImpl implements DNAStatsService {
+public class DNAStatsServiceImpl implements IDNAStatsService {
 
     @Autowired
     private DNAStatsRepository dnaStatsRepository;
@@ -39,8 +39,8 @@ public class DNAStatsServiceImpl implements DNAStatsService {
         long humansCount = dnaStatsRepository.getHumansQuantity();
 
          return DNAStatsDTO.builder()
-                .countMutant(mutantsCount)
-                .countHuman(humansCount)
+                .countMutants(mutantsCount)
+                .countHumans(humansCount)
                 .ratio(calcRatio(mutantsCount, humansCount))
                 .build();
     }
