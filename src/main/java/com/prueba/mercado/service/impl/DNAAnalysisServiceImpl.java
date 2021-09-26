@@ -29,7 +29,7 @@ public class DNAAnalysisServiceImpl implements IDNAAnalysisService {
      */
     @Override
     public boolean isMutant(DNASequenceDTO sequenceDTO) throws DNASequenceFormatException {
-        String[] sequence = sequenceDTO.getSequence();
+        String[] sequence = sequenceDTO.getDna();
 
         if(sequence == null) {
             throw new DNASequenceFormatException("The DNA sequence can't be null");

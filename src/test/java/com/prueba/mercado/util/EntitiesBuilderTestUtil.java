@@ -19,7 +19,7 @@ public class EntitiesBuilderTestUtil {
 
     public static DNASequenceDTO getDNASequenceDTO(String[] sequence) {
         return DNASequenceDTO.builder()
-                .sequence(sequence)
+                .dna(sequence)
                 .build();
     }
 

@@ -14,6 +14,6 @@ import javax.validation.constraints.NotNull;
 public class DNASequenceDTO {
 
     @NotNull(message = "Sequence is mandatory")
-    private String[] sequence;
+    private String[] dna;
 }
 
