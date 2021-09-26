@@ -3,8 +3,6 @@ package com.prueba.mercado.util;
 import com.prueba.mercado.domain.DNAModel;
 import com.prueba.mercado.dto.DNASequenceDTO;
 import com.prueba.mercado.dto.DNAStatsDTO;
-import com.prueba.mercado.service.impl.DNAAnalysisServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
 import java.util.UUID;

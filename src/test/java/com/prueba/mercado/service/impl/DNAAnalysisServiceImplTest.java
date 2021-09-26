@@ -6,24 +6,22 @@ import com.prueba.mercado.exception.DNASequenceFormatException;
 import com.prueba.mercado.service.IDNAAnalysisService;
 import com.prueba.mercado.service.IDNAStatsService;
 import com.prueba.mercado.util.EntitiesBuilderTestUtil;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import static org.mockito.Mockito.doNothing;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.mockito.Mockito.when;
-import static org.mockito.ArgumentMatchers.any;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -34,9 +32,6 @@ public class DNAAnalysisServiceImplTest {
 
     @MockBean
     IDNAStatsService dnaStatsService;
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void isExistingMutant() throws DNASequenceFormatException {
@@ -87,12 +82,10 @@ public class DNAAnalysisServiceImplTest {
     }
 
     @Test
-    public void nullSequenceTest () throws DNASequenceFormatException {
+    public void nullSequenceTest () {
         DNASequenceDTO dnaSequenceDTO = EntitiesBuilderTestUtil.getDNASequenceDTO(null);
 
-        DNASequenceFormatException exception = assertThrows(DNASequenceFormatException.class, () -> {
-            dnaAnalysisService.isMutant(dnaSequenceDTO);
-        });
+        DNASequenceFormatException exception = assertThrows(DNASequenceFormatException.class, () -> dnaAnalysisService.isMutant(dnaSequenceDTO));
 
         String expectedMessage = "The DNA sequence can't be null";
         String actualMessage = exception.getMessage();
@@ -101,13 +94,11 @@ public class DNAAnalysisServiceImplTest {
     }
 
     @Test
-    public void nullSubSequenceTest () throws DNASequenceFormatException {
+    public void nullSubSequenceTest () {
         String[] sequence = {"ATGCGA", null, "TTATGT","AGAAGG","CCCCTA","TCACTA"};
         DNASequenceDTO dnaSequenceDTO = EntitiesBuilderTestUtil.getDNASequenceDTO(sequence);
 
-        DNASequenceFormatException exception = assertThrows(DNASequenceFormatException.class, () -> {
-            dnaAnalysisService.isMutant(dnaSequenceDTO);
-        });
+        DNASequenceFormatException exception = assertThrows(DNASequenceFormatException.class, () -> dnaAnalysisService.isMutant(dnaSequenceDTO));
 
         String expectedMessage = "Invalid nitrogenous base, null subSequence";
         String actualMessage = exception.getMessage();
@@ -116,13 +107,11 @@ public class DNAAnalysisServiceImplTest {
     }
 
     @Test
-    public void incompleteSubSequenceTest() throws DNASequenceFormatException {
+    public void incompleteSubSequenceTest() {
         String[] sequence = {null, "CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTA"};
         DNASequenceDTO dnaSequenceDTO = EntitiesBuilderTestUtil.getDNASequenceDTO(sequence);
 
-        DNASequenceFormatException exception = assertThrows(DNASequenceFormatException.class, () -> {
-            dnaAnalysisService.isMutant(dnaSequenceDTO);
-        });
+        DNASequenceFormatException exception = assertThrows(DNASequenceFormatException.class, () -> dnaAnalysisService.isMutant(dnaSequenceDTO));
 
         String expectedMessage = "Invalid nitrogenous base, null subSequence";
         String actualMessage = exception.getMessage();
