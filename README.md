@@ -13,12 +13,14 @@ Este código fuente fue creado para dar solución al reto propuesto por MercadoL
 3. Ejecutar los siguienes comandos en la carpeta raíz del proyecto
      - `mvn clean install`
      - `mvn spring-boot:run -Dspring-boot.run.profiles=`
+
+Con esto el proyecto estaría listo para ser probado localmente.
+
 4. Para generar el reporte de cobertura de los test, ejecutar el siguiente comando en la carpeta raíz del proyecto
      - `mvn clean test`
-     - El archivo con los reportes se genera en la siguiente ruta:
+     - El archivo con los reportes de los test se genera en la siguiente ruta:
         - "\mercado-libre\target\site\jacoco\index.html"
   
-Con esto el proyecto estaría listo para ser probado localmente.
 
 
 ## Ejecución ambiente productivo
