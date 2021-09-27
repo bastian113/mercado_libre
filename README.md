@@ -1,6 +1,6 @@
 # Prueba Mercado Libre
 
-Este código fuente fue creadi para dar solución al reto propuesto por MercadoLibre
+Este código fuente fue creado para dar solución al reto propuesto por MercadoLibre
 
 # Instrucciones de ejecución
 ## Prerrequisitos
